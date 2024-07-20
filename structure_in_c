@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+struct book
+{
+    char title[100];
+    char author[100];
+    int pages;
+    int price;
+    int yop;
+};
+
+//We have declared the the format of the structure
+
+int main()
+{
+    struct book trove={"THE TALES","Tridib Biswas",48,599,2024};// we have assigned values to the structure members
+    struct book *vox;
+    vox=&trove;
+    //Below we will simply print the different data the BOOK of different DataTypes
+
+
+    printf("Book Title : %s\n",vox->title);
+    printf("Book Author : %s\n",vox->author);
+    printf("Book Pages : %d\n",vox->pages);
+    printf("Book Price : %d\n",vox->price);
+    printf("Book Yop : %d\n",vox->yop);
+
+    return 0;
+}
