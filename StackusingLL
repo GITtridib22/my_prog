@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int data;
+    struct node * next;
+}Node;
+int count = 0;
+void PUSH(Node**head)
+{
+    int val;
+    
+    if(++count == 6 ){ // 5 elements can be entered
+        printf("\n O V E R F L O W\n");
+        return;
+    }
+    
+    printf("\nEnter Integer to Push :\n");
+    scanf("%d",&val);
+    
+    Node * newnode = (Node*)malloc(sizeof(Node));
+    newnode->data = val;
+    newnode->next = NULL;
+    
+    if(*head == NULL){
+        *head = newnode;
+        printf("\n %d is PUSHED\n",val);
+        return;
+    }
+    newnode->next = *head;
+    *head = newnode;
+    printf("\n %d is PUSHED\n",val);
+    return;
+}
+
+void POP(Node**head)
+{
+    if(*head == NULL){
+        printf("\nU N D E R F L O W\n");
+        return;
+    }
+    Node * st = *head;
+    *head = (*head)->next;
+    printf("\n %d is POPPED\n",st->data);
+    free(st);
+    return;
+}
+void DISPLAY(Node*head)
+{
+    Node *temp =head;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    return;
+}
+
+int main()
+{
+    Node* head = NULL;
+    int ch;
+    while(1)
+    {
+        printf("\nEnter 1 for PUSH : ");
+        printf("\nEnter 2 for POP: ");
+        printf("\nEnter 3 for DISPLAY: ");
+        printf("\nEnter 0 for EXIT: ");
+        
+        printf("\nEnter the choice : ");
+        scanf("%d",&ch);
+        
+        switch(ch)
+        {
+            case 1:
+            PUSH(&head);
+            break;
+            
+            case 2:
+            POP(&head);
+            break;
+            
+            case 3:
+            DISPLAY(head);
+            break;
+            
+            case 0:
+            exit(1);
+            break;
+            
+            default:
+            printf("\nWrong Choice!!!\n");
+            break;
+        }
+    }
+}
